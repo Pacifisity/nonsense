@@ -1,5 +1,3 @@
-import re
-
 class Money:
     def round_and_format_amount(self, amount: float) -> str:
         # Rounded the amount to 2 decimal places and format it as a string.
