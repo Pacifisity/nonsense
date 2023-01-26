@@ -94,12 +94,31 @@ class Payroll:
     def calculate_hourly_rate(self, hours: float, gross: float):
         return f"${round(gross / hours, 2)}/hr"
 
+    # Calculates taxes given gross and returns net after fica and medicare taxes
+    def calculate_taxes(self, gross: float):
+        social_security = 1 - 0.062
+        medicare = 1 - 0.0145
+
+        # social security tax calculations
+        social_security_taxes = gross - (gross * social_security)
+        print(f"Fica Taxes: {round(social_security_taxes, 2)}")
+
+        # medicare tax calculations
+        medicare_taxes = gross - (gross * medicare)
+        print(f"Medicare Taxes: {round(medicare_taxes, 2)}")
+
+        # Evaluates net after adding up all fica taxes
+        fica_taxes = social_security_taxes + medicare_taxes
+        net = gross - fica_taxes
+
+        if net == round(net):
+            return f"${round(net)}"
+        else:
+            return f"${round(net, 2)}"
+
+
 money = Money()
-
-question1 = money.payroll.calculate_pay(3*3, 17.15)
-question2 = money.payroll.calculate_hourly_rate(8+7+5+1+8, 617.09)
-question3 = money.payroll.calculate_pay(43, 23.44)
-question4 = money.part_of_whole_percentage(134, 14)
-question5 = money.calculate_salary_plus_comission(1815, 4, 9283)
-
-print(f"1: {question1}\n2: {question2}\n3: {question3}\n4: {question4}\n5: {question5}")
+payroll = money.payroll
+result = money.payroll.calculate_pay(40, 14)
+# result = money.payroll.calculate_taxes(31478.32)
+print(result)
