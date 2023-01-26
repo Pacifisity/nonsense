@@ -17,7 +17,7 @@ class Money:
 
     def part_of_whole_percentage(self, whole: float, part: float) -> str:
         # Calculate the percentage of the part to the whole
-        return f"{round((part / whole)*100)}%"
+        return f"{round((part / whole)*100, 2)}%"
     
     def percent_of_number_percentage(self, percent: float, number: float) -> str:
         # Calculate the value of a percent of a number
@@ -101,24 +101,24 @@ class Payroll:
 
         # social security tax calculations
         social_security_taxes = gross - (gross * social_security)
-        print(f"Social Security Taxes: {round(social_security_taxes, 2)}")
+        print(f"Social Security Taxes: ${round(social_security_taxes, 2)}")
 
         # medicare tax calculations
         medicare_taxes = gross - (gross * medicare)
-        print(f"Medicare Taxes: {round(medicare_taxes, 2)}")
+        print(f"Medicare Taxes: ${round(medicare_taxes, 2)}")
 
         # Evaluates net after adding up all fica taxes
         fica_taxes = social_security_taxes + medicare_taxes
         net = gross - fica_taxes
 
         if net == round(net):
-            return f"${round(net)}"
+            return f"Net Pay: ${round(net)}"
         else:
-            return f"${round(net, 2)}"
+            return f"Net Pay: ${round(net, 2)}"
 
 
 money = Money()
 payroll = money.payroll
-# result = money.payroll.calculate_pay(40, 14)
-result = money.payroll.calculate_taxes(944)
+# result = money.part_of_whole_percentage(1421.50, 973.48)
+result = payroll.calculate_taxes(2181.8*24)
 print(result)
