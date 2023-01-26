@@ -101,7 +101,7 @@ class Payroll:
 
         # social security tax calculations
         social_security_taxes = gross - (gross * social_security)
-        print(f"Fica Taxes: {round(social_security_taxes, 2)}")
+        print(f"Social Security Taxes: {round(social_security_taxes, 2)}")
 
         # medicare tax calculations
         medicare_taxes = gross - (gross * medicare)
@@ -119,6 +119,6 @@ class Payroll:
 
 money = Money()
 payroll = money.payroll
-result = money.payroll.calculate_pay(40, 14)
-# result = money.payroll.calculate_taxes(31478.32)
+# result = money.payroll.calculate_pay(40, 14)
+result = money.payroll.calculate_taxes(944)
 print(result)
